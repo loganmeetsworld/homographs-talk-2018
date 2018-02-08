@@ -37,21 +37,21 @@ domains = CSV.read('./top-1m.csv').map(&:last)
 domains.each do |domain|
   domain_name, tld = domain.split('.', 2)
   if Set[*domain_name.chars].subset?(latin_confusables)
-    cyrllilc_domain = Array.new
+    cyrillic_domain = Array.new
     domain_name.each_char do |char|
-      cyrllilc_domain.push latin_confusables_map[char]
+      cyrillic_domain.push latin_confusables_map[char]
     end
-    cyrllilc_domain = cyrllilc_domain.join
-    cyrllilc_domain += '.'
-    cyrllilc_domain += tld
+    cyrillic_domain = cyrillic_domain.join
+    cyrillic_domain += '.'
+    cyrillic_domain += tld
 
     begin 
-      record = Whois.whois(cyrllilc_domain).parser
+      record = Whois.whois(cyrillic_domain).parser
       if !record.registered?
-        puts "#{domain} (#{cyrllilc_domain})"
+        puts "#{domain} (#{cyrillic_domain})"
       end
     rescue
-      puts "--can't parse-- #{domain} (#{cyrllilc_domain})"
+      puts "--can't parse-- #{domain} (#{cyrillic_domain})"
     end
   end
 end
