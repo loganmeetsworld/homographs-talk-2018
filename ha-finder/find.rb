@@ -23,7 +23,7 @@ latin_confusables_map = Hash[
   # 'u' => 'џ',
   'w' => 'ԝ',
   'x' => 'х',
-  'y' => 'y'
+  'y' => 'у'
 ]
 
 latin_confusables = latin_confusables_map.keys.to_set
@@ -47,7 +47,7 @@ domains.each do |domain|
 
     begin 
       record = Whois.whois(cyrllilc_domain).parser
-      if record.available?
+      if !record.registered?
         puts "#{domain} (#{cyrllilc_domain})"
       end
     rescue
