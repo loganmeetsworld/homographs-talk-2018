@@ -2,6 +2,7 @@ require 'whois'
 require 'whois-parser'
 require 'csv'
 require 'set'
+require 'simpleidn'
 
 latin_confusables_map = Hash[
   'a' => 'а',
@@ -44,9 +45,10 @@ domains.each do |domain|
     cyrillic_domain = cyrillic_domain.join
     cyrillic_domain += '.'
     cyrillic_domain += tld
+    punycode_domain = SimpleIDN.to_ascii(cyrillic_domain)
 
     begin 
-      record = Whois.whois(cyrillic_domain).parser
+      record = Whois.whois(punycode_domain).parser
       if !record.registered?
         puts "#{domain} (#{cyrillic_domain})"
       end
