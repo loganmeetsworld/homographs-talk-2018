@@ -3,9 +3,8 @@ theme: Letters From Sweden, 3
 # Homographs,
 # a History
 
-^ Description
-
-<!-- Notes -->
+^ Notes
+^ 
 
 ---
 
