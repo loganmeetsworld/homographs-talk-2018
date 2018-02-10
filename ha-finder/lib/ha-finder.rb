@@ -34,7 +34,7 @@ c = Whois::Client.new
 
 puts 'available domains: '
 
-domains = CSV.read('./top-1m.csv').map(&:last)
+domains = CSV.read('./lib/top-1m.csv').map(&:last)
 domains.each do |domain|
   domain_name, tld = domain.split('.', 2)
   if Set[*domain_name.chars].subset?(latin_confusables)

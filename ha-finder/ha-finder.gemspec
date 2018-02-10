@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'ha-finder'
-  s.version     = '0.0.0'
+  s.version     = '0.0.1'
   s.date        = '2018-02-08'
   s.summary     = "A finder of homograph attack DNS entries."
   s.authors     = ["Logan McDonald"]
