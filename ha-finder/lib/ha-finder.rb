@@ -24,12 +24,12 @@ latin_confusables_map = Hash[
   # 'u' => 'џ',
   'w' => 'ԝ',
   'x' => 'х',
-  'y' => 'у'
+  'y' => 'у',
 ]
 
 latin_confusables = latin_confusables_map.keys.to_set
 
-(0..9).each{|num| latin_confusables.add num.to_s }
+(0..9).each{|num| latin_confusables.add num.to_s; latin_confusables_map[num.to_s] = num.to_s }
 c = Whois::Client.new
 
 puts 'available domains: '
