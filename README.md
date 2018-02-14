@@ -4,4 +4,6 @@ Here you will find the slides to the talk "Homographs, a history", the gem used 
 
 Check out the [Resources](/resources.md).
 
-Major thanks to @frewsxcv for researching this with me.
+# Thanks
+
+Major thanks to [@frewsxcv](https://github.com/frewsxcv) for researching this with me.

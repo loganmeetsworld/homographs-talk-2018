@@ -14,13 +14,6 @@
 * [Multilingual web sites: Internationalized Domain Name homograph attacks by Johnny Al Helou and Scott Tilley](http://ieeexplore.ieee.org/abstract/document/5623562/?reload=true)
 * [IDN Homograph Attack Potential Impact Analysis by @jsidrach](https://github.com/jsidrach/idn-homograph-attack)
 
-## Examples
-
-* http://аоӏ.com/
-* https://раураӏ.com/
-* https://аррӏе.com/
-* http://www.спп.com/
-
 ## Browser policies
 
 * [Chrome's IDN Display Algorithm](https://www.chromium.org/developers/design-documents/idn-in-google-chrome)
@@ -57,3 +50,10 @@
 ## Misc Security related to Domains
 
 * [Extended Validation Is Broken by @iangcarroll](https://stripe.ian.sh/)
+
+## Examples
+
+* http://аоӏ.com/
+* https://раураӏ.com/
+* https://аррӏе.com/
+* http://www.спп.com/
