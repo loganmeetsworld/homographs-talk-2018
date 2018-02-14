@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+
+# Loads the library path and all files in it
+# requires the run file to start program
+# calls the perform method in run
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+
+require './lib/ha-finder/run'
+
+HaFinder::Run.new.perform

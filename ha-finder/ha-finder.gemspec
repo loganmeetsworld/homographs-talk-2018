@@ -1,14 +1,23 @@
-Gem::Specification.new do |s|
-  s.name        = 'ha-finder'
-  s.version     = '0.0.1'
-  s.date        = '2018-02-08'
-  s.summary     = "A finder of homograph attack DNS entries."
-  s.authors     = ["Logan McDonald"]
-  s.email       = 'loganmcdona11@gmail.com'
-  s.files       = ["lib/ha-finder.rb"]
-  s.license     = 'MIT'
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require 'version'
 
-  s.add_dependency "whois", "~> 4.0"
-  s.add_dependency "whois-parser", "~> 1.0"
-  s.add_dependency "simpleidn", "~> 0.0"
+Gem::Specification.new do |gem|
+  gem.name          = 'ha-finder'
+  gem.version       = HaFinder::VERSION
+  gem.authors       = ['Logan McDonald']
+  gem.email         = ['logan@logancodes.it']
+  gem.description   = %q{Use this command line tool to find homograph attacks.}
+  gem.summary       = %q{Finds available domains to be used in homograph attacks.}
+  gem.homepage      = 'https://github.com/loganmeetsworld/ha-finder'
+  gem.license       = "MIT"
+
+  gem.files         = `git ls-files`.split($/)
+  gem.files         -= gem.files.grep(%r{^\.})
+  gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
+  gem.require_paths = ['lib']
+
+  gem.add_dependency "whois", "~> 4.0"
+  gem.add_dependency "whois-parser", "~> 1.0"
+  gem.add_dependency "simpleidn", "~> 0.0"
 end
