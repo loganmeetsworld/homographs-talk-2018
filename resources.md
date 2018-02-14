@@ -1,6 +1,6 @@
 # Resources
 
-## Research
+## Background
 
 * [Wikipedia on Homograph Attacks](https://en.wikipedia.org/wiki/IDN_homograph_attack)
 * [Wikipedia on IDNs](https://en.wikipedia.org/wiki/Internationalized_domain_name)
