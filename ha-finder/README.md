@@ -1,6 +1,7 @@
 # Homograph Attack Finder
 
 ```
-gem install ha-finder
-ruby lib/ha-finder.rb
+git clone https://github.com/loganmeetsworld/homographs-talk.git
+cd ha-finder
+bin/ha-finder
 ```
