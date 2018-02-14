@@ -11,7 +11,7 @@
 * [The Homograph Attack by Evgeniy Gabrilovich and Alex Gontmakher](http://evgeniy.gabrilovich.com/publications/papers/homograph_full.pdf) NOTE: The original paper!
 * [Cutting through the Confusion: A Measurement Study of Homograph Attacks by Tobias Holgers, David E. Watson, and Steven D. Gribble](http://static.usenix.org/events/usenix06/tech/full_papers/holgers/holgers_html/)
 * [Assessment of Internationalised Domain Name Homograph Attack Mitigation by Peter Hannay and Christopher Bolan](http://ro.ecu.edu.au/cgi/viewcontent.cgi?article=1010&context=ism)
-* http://ieeexplore.ieee.org/abstract/document/5623562/?reload=true
+* [Multilingual web sites: Internationalized Domain Name homograph attacks by Johnny Al Helou and Scott Tilley](http://ieeexplore.ieee.org/abstract/document/5623562/?reload=true)
 * [IDN Homograph Attack Potential Impact Analysis by @jsidrach](https://github.com/jsidrach/idn-homograph-attack)
 
 ## Examples
@@ -49,8 +49,8 @@
 * [Wikipedia for TLD](https://en.wikipedia.org/wiki/List_of_Internet_top-level_domains). Each TLD has its own Registry that manages it and defines its IDN rules.
 * [Wikipedia for Domain Name Registry](https://en.wikipedia.org/wiki/Domain_name_registry), like Verisign
 * [Wikipedia for Domain Name Registrar](https://en.wikipedia.org/wiki/Domain_name_registrar), like Namecheap, Godaddy, or Gandi.net
-* [ICANN Accreditation and Verisign Certification] (https://www.verisign.com/en_US/channel-resources/become-a-registrar/verisign-domain-registrar/index.xhtml) for distributing .com domains
-* [Wikipedia for the Extensible Provisioning Protocol]((https://en.wikipedia.org/wiki/Extensible_Provisioning_Protocol), which is used when a user on a registry requests a .com domain. The registry uses the EPP protocol to communicate with verisign to register the domain.
+* [ICANN Accreditation and Verisign Certification](https://www.verisign.com/en_US/channel-resources/become-a-registrar/verisign-domain-registrar/index.xhtml) for distributing .com domains
+* [Wikipedia for the Extensible Provisioning Protocol](https://en.wikipedia.org/wiki/Extensible_Provisioning_Protocol), which is used when a user on a registry requests a .com domain. The registry uses the EPP protocol to communicate with verisign to register the domain.
 * [Verisign's IDN Policy](https://www.verisign.com/en_US/channel-resources/domain-registry-products/idn/idn-policy/registration-rules/index.xhtml). Verisign requires you specify a three letter language tag associated with the domain upon registration. this tag determines which character scripts you can use in the domain. presumably the language tag for https://аррӏе.com/ (cyrillic) is 'RUS' or 'UKR'.
 * [PIR, manager of .org TLDs, IDN rules](https://pir.org/products/org-domain/org-idns/)
 
