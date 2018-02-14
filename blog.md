@@ -1,8 +1,8 @@
-# TODO WIP
+# [TODO WIP] Homographs, a History
 
-Homograph attacks have been a concept since the late 1990s. So why do we find ourselves still talking about them today? In this post, I plan to explore the history of homographs, and why, like many of the internets path dependent problems, it seems like they just won't ever go away.
+Homograph attacks have been a concept in security since the late 1990s. So why do we find ourselves still talking about them today? In this post, I plan to explore the history of homographs, and why, like many of the internet's path dependency problems, it seems like they just won't ever go away.
 
-## Origins
+## Origins of my Interest
 
 * Hackerone program
 * Websites hosting profiles
