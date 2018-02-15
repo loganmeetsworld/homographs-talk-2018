@@ -76,7 +76,7 @@ vs
 
 > `xn--wshingtonpost-w1k.com`
 
-Uh oh, these definitely aren't the same. However, user-agents would make them appear the same in a browser, in order to make the punycode user-friendly.
+Uh oh, these definitely aren't the same. However, user-agents would make them appear the same in a browser, in order to make the punycode user-friendly. But in reality, the first "a" in the fake-WaPo is really a Cyrillic character. When translated to punycode we can see the ASCII remaining characters, "wshingtonpost" and then a key signifying the Cyrillic a, "w1k".
 
 This presented ICANN with a big problem. You can clearly see how these may be used in phishing attacks when user-agents interpret both Washington Post's as homographs, making them look exactly same. So what was ICANN to do?
 
@@ -103,11 +103,21 @@ For example, here's my personal favorite. In both Firefox and Chrome, visit:
 
 > https://раураӏ.com/
 
+Here's what they look like in those Browsers.
+
+Firefox:
+
+![Firefox IDN display algo](https://imgur.com/6Nvi8tq.png)
+
+Chrome:
+
+![Chrome IDN display algo](https://imgur.com/lHf0IaI.png)
+
 Pretty cool! In Firefox, it totally looks like the official PayPal in the address bar! However, in Chrome, it resolves to punycode. Why is that? 🤔
 
 ## User-Agents & Their Internationalized Domain Names Display Algorithms
 
-It is because Chrome and Mozilla use different Internalized Domain Name Display Algorithms. [Chrome's algorithm](https://www.chromium.org/developers/design-documents/idn-in-google-chrome) is much stricter and more complex than Mozilla's, and includes special logic to protect against homograph attacks. Chrome checks to see if the domain name is on a gTLD and all the letters are confusable Cyrillic, then it shows punycode in the browser rather than the unicode characters. Chrome only changed this recently because of [Xudong Zheng’s 2017 report](https://www.xudongz.com/blog/2017/idn-phishing/).
+It is because Chrome and Mozilla use different Internalized Domain Name Display Algorithms. [Chrome's algorithm](https://www.chromium.org/developers/design-documents/idn-in-google-chrome) is much stricter and more complex than Mozilla's, and includes special logic to protect against homograph attacks. Chrome checks to see if the domain name is on a gTLD and all the letters are confusable Cyrillic, then it shows punycode in the browser rather than the unicode characters. Chrome only changed this recently because of [Xudong Zheng’s 2017 report](https://www.xudongz.com/blog/2017/idn-phishing/) using `www.xn--80ak6aa92e.com` as a POC.
 
 Firefox, on the other hand, still shows the full URL in its intended script, even if it's confusable with Latin characters. I want to point out that Firefox allows you to change your settings to _always_ show punycode in the Browser, but if you often use sites that aren't ASCII domains, this can be pretty inaccessible.
 
