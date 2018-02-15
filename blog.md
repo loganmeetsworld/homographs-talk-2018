@@ -8,7 +8,7 @@ I first got interested in homograph attacks a few months back when I was working
 
 When I was looking through the tickets, one caught my attention. It wasn't a particularly high risk vulnerability, but I didn't understand a lot of words in the ticket, so of course I was interested. The hacker was concerned about Kickstarter's profile pages. We often get reports about our profile and project pages.
 
-![Example of Kickstarter's Profile Page](https://imgur.com/Yr3KizX)
+![Example of Kickstarter's Profile Page](https://imgur.com/Yr3KizX.png)
 
 The issue is that whenever you are in the position to "host" someone on your site, you are going to have to think about the ways they'll abuse that legitimacy you give them. Our hacker was specifically concerned about a field that allows our users to add user-urls or "websites" to their profile. 
 
