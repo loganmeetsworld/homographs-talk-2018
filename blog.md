@@ -12,7 +12,7 @@ When I was looking through the tickets, one caught my attention. It wasn't a par
 
 The issue is that whenever you are in the position to "host" someone on your site, you are going to have to think about the ways they'll abuse that legitimacy you give them. Our hacker was specifically concerned about a field that allows our users to add user-urls or "websites" to their profile. 
 
-![Example of Kickstarter's Profile Page Websites](https://imgur.com/6EpiaXz)
+![Example of Kickstarter's Profile Page Websites](https://imgur.com/6EpiaXz.png)
 
 They thought this section could be used in a homograph attack. To which I was like, what the heck is a homograph attack? And that question lead me down a rabbit hole of international internet governance, handfuls of RFCs, and a decades-old debate about the global nature of the internet.
 
@@ -58,7 +58,7 @@ The problem when it comes to IDNs is that homoglyphs exist between scripts as we
 
 Example of lookalikes from homoglyphs.net:
 
-![Homoglyphs.net Image of Example Homoglyphs](https://imgur.com/MYkUwMw)
+![Homoglyphs.net Image of Example Homoglyphs](https://imgur.com/MYkUwMw.png)
 
 Let's look at an example of a domain name.
 
@@ -88,7 +88,7 @@ Problem fixed, right? Well, while mixed scripts are not allowed, pure scripts ar
 
 ## Proof of Concept
 
-![Gif of POC](https://giphy.com/gifs/YFH1Nz1PcHXb9Ym5xU)
+![Gif of POC](https://giphy.com/gifs/YFH1Nz1PcHXb9Ym5xU.gif)
 
 Well, when I was talking to my friend [@frewsxcv](https://github.com/frewsxcv) about homograph attacks, he had the great idea to make a script to find susceptible urls for the attack. So I made a [homograph attack detector](https://github.com/loganmeetsworld/homographs-talk/tree/master/ha-finder) that:
 
