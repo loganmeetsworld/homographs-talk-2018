@@ -8,9 +8,13 @@ I first got interested in homograph attacks a few months back when I was working
 
 When I was looking through the tickets, one caught my attention. It wasn't a particularly high risk vulnerability, but I didn't understand a lot of words in the ticket, so of course I was interested. The hacker was concerned about Kickstarter's profile pages. We often get reports about our profile and project pages.
 
-![Example of Kickstarter's Profile Page]()
+![Example of Kickstarter's Profile Page](https://imgur.com/a/B5DtW)
 
-The issue is that whenever you are in the position to "host" someone on your site, you are going to have to think about the ways they'll abuse that legitimacy you give them. Our hacker was specifically concerned about a field that allows our users to add user-urls or "websites" to their profile. They thought this section could be used in a homograph attack. To which I was like, what the heck is a homograph attack? And that question lead me down a rabbit hole of international internet governance, handfuls of RFCs, and a decades-old debate about the global nature of the internet.
+The issue is that whenever you are in the position to "host" someone on your site, you are going to have to think about the ways they'll abuse that legitimacy you give them. Our hacker was specifically concerned about a field that allows our users to add user-urls or "websites" to their profile. 
+
+![Example of Kickstarter's Profile Page Websites](https://imgur.com/a/mOtVy)
+
+They thought this section could be used in a homograph attack. To which I was like, what the heck is a homograph attack? And that question lead me down a rabbit hole of international internet governance, handfuls of RFCs, and a decades-old debate about the global nature of the internet.
 
 ## Internet Corporation for Names and Numbers (ICANN)
 
@@ -46,7 +50,7 @@ So, problems solved. We have a way to use domain names in unicode scripts that r
 
 Well, things aren’t always as they seem. And this is where homographs and homoglyphs come in.
 
-![Gif of Puppy Seeing Itself in the Mirror]()
+![Gif of Puppy Seeing Itself in the Mirror](https://i.imgur.com/16szzeE.gifv)
 
 Much like this puppy sees copy-pups of itself, a homograph refers to multiple things that look or seem the same, but have different meanings. We have many of these in English, for example “lead” could refer to the metallic substances or the past tense of “to lead.”
 
@@ -54,7 +58,7 @@ The problem when it comes to IDNs is that homoglyphs exist between scripts as we
 
 Example of lookalikes from homoglyphs.net:
 
-![Homoglyphs.net Image of Example Homoglyphs]()
+![Homoglyphs.net Image of Example Homoglyphs](https://imgur.com/a/T5Wa5)
 
 Let's look at an example of a domain name.
 
@@ -84,7 +88,7 @@ Problem fixed, right? Well, while mixed scripts are not allowed, pure scripts ar
 
 ## Proof of Concept
 
-![Gif of POC]()
+![Gif of POC](http://www.giphy.com/gifs/YFH1Nz1PcHXb9Ym5xU)
 
 Well, when I was talking to my friend [@frewsxcv](https://github.com/frewsxcv) about homograph attacks, he had the great idea to make a script to find susceptible urls for the attack. So I made a [homograph attack detector](https://github.com/loganmeetsworld/homographs-talk/tree/master/ha-finder) that:
 
