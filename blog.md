@@ -50,7 +50,7 @@ So, problems solved. We have a way to use domain names in unicode scripts that r
 
 Well, things aren’t always as they seem. And this is where homographs and homoglyphs come in.
 
-![Gif of Puppy Seeing Itself in the Mirror](https://imgur.com/tOr8uac.gifv)
+![Gif of Puppy Seeing Itself in the Mirror](https://imgur.com/tOr8uac.gif)
 
 Much like this puppy sees copy-pups of itself, a homograph refers to multiple things that look or seem the same, but have different meanings. We have many of these in English, for example “lead” could refer to the metallic substances or the past tense of “to lead.”
 
@@ -58,7 +58,7 @@ The problem when it comes to IDNs is that homoglyphs exist between scripts as we
 
 Example of lookalikes from homoglyphs.net:
 
-![Homoglyphs.net Image of Example Homoglyphs](https://imgur.com/W5Q1D2N.gif)
+![Homoglyphs.net Image of Example Homoglyphs](https://imgur.com/lpDpgMO.png)
 
 Let's look at an example of a domain name.
 
@@ -88,7 +88,7 @@ Problem fixed, right? Well, while mixed scripts are not allowed, pure scripts ar
 
 ## Proof of Concept
 
-![Gif of POC](https://giphy.com/gifs/YFH1Nz1PcHXb9Ym5xU.gif)
+![Gif of POC](https://imgur.com/W5Q1D2N.gif)
 
 Well, when I was talking to my friend [@frewsxcv](https://github.com/frewsxcv) about homograph attacks, he had the great idea to make a script to find susceptible urls for the attack. So I made a [homograph attack detector](https://github.com/loganmeetsworld/homographs-talk/tree/master/ha-finder) that:
 
