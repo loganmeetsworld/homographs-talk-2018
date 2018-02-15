@@ -1,99 +1,132 @@
 # Homographs, Attack!
 
-Homograph attacks have been a concept in security since the late 1990s so why do we find ourselves still talking about them today? In this post, I plan to explore the history of homographs, and why, like many of the internet's path dependency problems, it seems like they just won't ever go away.
+Homograph attacks have been a concept in security since the late 1990s so why do we find ourselves still talking about them today? In this post, I plan to explore the history of homograph attacks, and why, like many of the internet's path dependency problems, it seems like they just won't ever go away.
 
 ## Origins of my Interest
 
-* Hackerone program
-* Websites hosting profiles
-* Kickstarter's bug bounty program
+I first got interested in homograph attacks a few months back when I was working through tickets for Kickstarter's [Hackerone](https://hackerone.com) program. HackerOne is a "bug bounty program", or, an invitation that hackers and security researchers find vulnerabilities in our site in exchange for money.
 
-## ICANN
+When I was looking through the tickets, one caught my attention. It wasn't a particularly high risk vulnerability, but I didn't understand a lot of words in the ticket, so of course I was interested. The hacker was concerned about Kickstarter's profile pages. We often get reports about our profile and project pages.
 
-Along with performing the technical maintenance of the DNS root zone registries and maintain the namespaces of the Internet, ICANN makes all the rules about what can and cannot be a domain name.
+![Example of Kickstarter's Profile Page]()
 
-So say you go to Namecheap to register loganisawesome.com. Namecheap uses the “extensible provisioning protonol” to verify your name with Verisign which is the organization that manages the registry for the “.com” gTLD. Versign checks the ICANN rules and regulations for your registration attempt, tells Namecheap the result, and Namecheap tells me if I can register loganisawesome.com. 
+The issue is that whenever you are in the position to "host" someone on your site, you are going to have to think about the ways they'll abuse that legitimacy you give them. Our hacker was specifically concerned about a field that allows our users to add user-urls or "websites" to their profile. They thought this section could be used in a homograph attack. To which I was like, what the heck is a homograph attack? And that question lead me down a rabbit hole of international internet governance, handfuls of RFCs, and a decades-old debate about the global nature of the internet.
 
-This is great. But I speak English and I use ASCII for all my awesome business on the internet. What happens to all those other languages that can’t be expressed in a script compatible with ASCII?
+## Internet Corporation for Names and Numbers (ICANN)
+
+We have to start with ICANN, the main international internet body in charge in this story. Along with performing the technical maintenance of the DNS root zone registries and maintain the namespaces of the Internet, ICANN makes all the rules about what can and cannot be a domain name.
+
+For example, say you go to Namecheap to register "loganisthemostawesome.com". Namecheap uses the [“extensible provisioning protocol”](https://en.wikipedia.org/wiki/Extensible_Provisioning_Protocol) to verify your name with Verisign. Verisign is the organization that manages the registry for the “.com” gTLD. Versign checks the ICANN rules and regulations for your registration attempt, tells Namecheap the result, and Namecheap tells me if I can register "loganisthemostawesome.com". Spoilers: I can!
+
+This is great. But I primarily speak English and I use ASCII for all my awesome businesses on the internet. What happens to all those other languages that can’t be expressed in a script compatible with ASCII?
 
 ### Version 1 of Internationalized Domain Names
 
-That’s the question ICANN was asking themselves when they proposed and implemented IDNs as a standard protocol for domain names in the late 90s. They wanted a more global internet so they opened up domains to a variety of unicode represented scripts.
+That’s the question ICANN was asking themselves when they [proposed and implemented IDNs](https://www.icann.org/resources/pages/idn-guidelines-2003-06-20-en) as a standard protocol for domain names in the late 90s. They wanted a more global internet so they opened up domains to a variety of unicode represented scripts.
 
-What's a script? So a script is just a collection of letters/signs for a single system; for example, Latin (supporting many languages) or Kanji (which is just one of the scripts that supports the Japanese language).
+What's a script? A script is a collection of letters/signs for a single system. For example, Latin is a script that supports many languages, whereas a script like Kanji is one of the scripts supporting the Japanese language. Scripts can support many languages, and languages can be made of multiple scripts. ICANN keeps tables of all unicode character it associates with any given script.
 
-However, there was a requirement. ICANN’s Domain Name System, which performs a lookup service to translate user-friendly names into network addresses for locating Internet resources, is restricted in practice to the use of ASCII characters.
+This is even better now! Through IDNs, ICANN has given us the ability to express internet communities across many scripts. However, there was one important requirement. [ICANN’s Domain Name System](https://en.wikipedia.org/wiki/Domain_Name_System), which performs a lookup service to translate user-friendly names into network addresses for locating Internet resources, is restricted in practice to the use of ASCII characters.
 
 ### Punycode
 
-Thus ICANN turned to Punycode. This is the protocol for that translates names written in language-native scripts into an ASCII text representation that is compatible with the Domain Name System.
+Thus ICANN turned to Punycode. Punycode is just puny unicode. Bootstring is the algorithm  that translates names written in language-native scripts (unicode) into an ASCII text representation that is compatible with the Domain Name System (punycode).
 
-[Punycode example]
+For example, take this fictional domain name (because we still can't have emojis in gTLDs 😭):
 
-So, problems solved. We have a way to use domain names in unicode scripts that represent the full global reach of the internet. Great! What could go wrong?
+> hi👋friends💖🗣.com
+
+If you put this in your browser, the real lookup against the Domain Name System would have to use the punycode equivalent:
+
+> `xn--hifriends-mq85h1xad5j.com`
+
+So, problems solved. We have a way to use domain names in unicode scripts that represent the full global reach of the internet and can start handing out IDNs. Great! What could go wrong?
 
 ## Homographs
 
-Well, things aren’t always as they seem. And this is where homographs come in.
+Well, things aren’t always as they seem. And this is where homographs and homoglyphs come in.
 
-A homograph or homoglyph is multiple things that look or seem the same. We have many of these in English, for example “lead” could refer to the metallic substances or the past tense of “to lead.”
+![Gif of Puppy Seeing Itself in the Mirror]()
 
-The problem is that homoglyphs exist between scripts as well, with many of the Latin letters having copycats in other scripts, like Greek or Cyrillic.
+Much like this puppy sees copy-pups of itself, a homograph refers to multiple things that look or seem the same, but have different meanings. We have many of these in English, for example “lead” could refer to the metallic substances or the past tense of “to lead.”
 
-Let's look at an example.
+The problem when it comes to IDNs is that homoglyphs exist between scripts as well, with many of the Latin letters having copies in other scripts, like Greek or Cyrillic.
 
-washingtonpost.com
+Example of lookalikes from homoglyphs.net:
+
+![Homoglyphs.net Image of Example Homoglyphs]()
+
+Let's look at an example of a domain name.
+
+> washingtonpost.com
+
 vs
-wаshingtonpost.com
 
-Can you tell the difference? Well, let's translate both of these to purely ASCII.
+> wаshingtonpost.com
 
-washingtonpost.com
+Can you tell the difference? Well, let's translate both of these to purely ASCII:
+
+> washingtonpost.com
+
 vs
-xn--wshingtonpost-w1k.com
 
-Uh oh, these definitely aren't the same. So this presented ICANN with a big problem. You can clearly see how these may be used in phishing attacks when useragents interpret both WashingtonPost's making them look the same. So what was ICANN to do?
+> `xn--wshingtonpost-w1k.com`
+
+Uh oh, these definitely aren't the same. However, user-agents would make them appear the same in a browser, in order to make the punycode user-friendly.
+
+This presented ICANN with a big problem. You can clearly see how these may be used in phishing attacks when user-agents interpret both Washington Post's as homographs, making them look exactly same. So what was ICANN to do?
 
 ## Internationalized Domain Names Version 2 & 3
 
-By 2008, ICANN had figured out a solution. They told gTLD registrars they had to restrict mix scripts. Every single registered domain had to have a "label" on it to indicate the single pure script that the domain name would use to support it's language. So today, if you went and tried to register our copy-cat Washington Post at xn--wshingtonpost-w1k.com, you would get an error.
+By 2005, ICANN had figured out a solution. They told gTLD registrars they had to restrict mix scripts. Every single registered domain had to have a "label" on it to indicate the single pure script that the domain name would use to support it's language. Today, if you went and tried to register our copy-cat Washington Post at `xn--wshingtonpost-w1k.com`, you would get an error. Note: There were a few exceptions made, however, for languages that need to be mixed script, like Japanese.
 
-Problem fixed, right? Well, while mixed scripts are not allowed, pure scripts are perfectly fine. So we still have a problem, what about pure scripts in Cyrillic or Greek alphabets that look like the Latin characters? How many of those could there be?
+Problem fixed, right? Well, while mixed scripts are not allowed, pure scripts are still perfectly fine according to ICANN's guidelines. Thus, we still have a problem. What about pure scripts in Cyrillic or Greek alphabets that look like the Latin characters? How many of those could there be?
 
 ## Proof of Concept
 
-[Gif of POC]
+![Gif of POC]()
 
-A co-worker and I had the idea to make a homograph attack detector so we made a script that :
+Well, when I was talking to my friend [@frewsxcv](https://github.com/frewsxcv) about homograph attacks, he had the great idea to make a script to find susceptible urls for the attack. So I made a [homograph attack detector](https://github.com/loganmeetsworld/homographs-talk/tree/master/ha-finder) that:
 
-* Takes the top 1million websites
-* Checks if letters in each are confusable with latin/decimal
-* Checks to see if the punycode url is registered through a WHOIS lookup
+* Takes the top 1 million websites
+* For each domain, checks if letters in each are confusable with latin or decimal
+* Checks to see if the punycode url for that domain is registered through a WHOIS lookup
+* Returns all the available domains we could register
 
-A lot of the URLs a little off looking with the Cyrillic (also a lot of the top 1 million websites are porn), but we found some interesting ones you could register.
+A lot of the URLs are a little off looking with the Cyrillic (also a lot of the top 1 million websites are porn), but we found some interesting ones you could register.
 
-For example, in Firefox and Chrome, go to 
+For example, here's my personal favorite. In both Firefox and Chrome, visit:
 
-https://раураӏ.com/
+> https://раураӏ.com/
 
-Notice the difference in the Browsers? Why is that?
+Pretty cool! In Firefox, it totally looks like the official PayPal in the address bar! However, in Chrome, it resolves to punycode. Why is that? 🤔
 
-## User Agents & Their Internationalized Domain Names Display Algorithms
+## User-Agents & Their Internationalized Domain Names Display Algorithms
 
-This is because Chrome and Mozilla use different Internalized Domain Name Display Algorithms. [Chrome's algorithm](https://www.chromium.org/developers/design-documents/idn-in-google-chrome) is much stricter and more complex than Mozilla's. Chrome checks to see if the domain name is on a gTLD and all the letters are confusable Cyrillic, then it shows punycode in the browser rather than the unicode characters. Firefox, on the other hand, shows the full URL in its intended script, even if it's confusable with Latin characters. However, I want to point out that Firefox allows you to change your settings to _always_ show punycode in the Browser, but if you often use sites that aren't ASCII domains, this can be pretty inaccessible.
+It is because Chrome and Mozilla use different Internalized Domain Name Display Algorithms. [Chrome's algorithm](https://www.chromium.org/developers/design-documents/idn-in-google-chrome) is much stricter and more complex than Mozilla's, and includes special logic to protect against homograph attacks. Chrome checks to see if the domain name is on a gTLD and all the letters are confusable Cyrillic, then it shows punycode in the browser rather than the unicode characters. Chrome only changed this recently because of [Xudong Zheng’s 2017 report](https://www.xudongz.com/blog/2017/idn-phishing/).
 
-## Who is responsible now then?
+Firefox, on the other hand, still shows the full URL in its intended script, even if it's confusable with Latin characters. I want to point out that Firefox allows you to change your settings to _always_ show punycode in the Browser, but if you often use sites that aren't ASCII domains, this can be pretty inaccessible.
 
-So what, now, is our responsibility as application developers. I can see a couple paths forward:
+## So, what's next?
 
-1. Advocate to Firefox and other user-agents to make sure to change their algorithms to protect users.
-2. Advocate that ICANN changes it’s rules around registering domains with Latin confusable domains.
-3. Implement our own display algorithms, which is what we eneded up doing at Kickstarter. We used Google's open-source algorithm and show a warning if it's possible that the url shown on the page is a homograph for another url.
-4. Finally, we could just register these domains like I did with Paypal so that they aren't able to be used maliciously. Possibly, if we are part of an organization with a suseptible domain, we should just register it.
+So what, now, is our responsibility as application developers and maintainers if we think someone might use our site to phish people using a homograph? I can see a couple paths forward:
 
-To summarize, this is a hard problem! That's why it's been around for two decades. And fundamentally what I find so interesting about the issues surfaced by this attack. 
+1. Advocate to Mozilla and other user-agents to make sure to change their algorithms to protect users.
+1. Advocate that ICANN changes its rules around registering domains with Latin confusable characters.
+1. Implement our own display algorithms. This is what we ended up doing at Kickstarter. We used Google's open-source algorithm and show a warning if it's possible that the url shown on the page is a homograph for another url.
+1. Finally, we could just register these domains like [@frewsxcv](https://github.com/frewsxcv) and I did with PayPal so that they aren't able to be used maliciously. Possibly, if we are part of an organization with a susceptible domain, we should just register it.
 
-Chrome only changed it because of [Xudong Zheng’s 2017 report](https://www.xudongz.com/blog/2017/idn-phishing/).  I like Chrome's statement in support of their display algorithm: “We want to prevent confusion, while ensuring that users across languages have a great experience in Chrome. Displaying either punycode or a visible security warning on too wide of a set of URLs would hurt web usability for people around the world.” The internet is full of these tradeoffs around accessibility and this is just one example I found interesting.
+To summarize, this is a hard problem! That's why it's been around for two decades. And fundamentally what I find so interesting about the issues surfaced by this attack. I personally think ICANN did the right thing in allowing IDNs in various scripts. The internet should be more accessible to all.
+
+I like Chrome's statement in support of their display algorithm, however, which nicely summarizes the tradeoffs as play: 
+
+> We want to prevent confusion, while ensuring that users across languages have a great experience in Chrome. Displaying either punycode or a visible security warning on too wide of a set of URLs would hurt web usability for people around the world.
+
+The internet is full of these tradeoffs around accessibility versus security. As users and maintainers of this wonderful place, I find conversations like these to be one of the best parts of building our world together.
+
+Now, we just gotta get some emoji support.
+
+Thanks for reading! 🌍💖🎉🙌🌏
 
 ## Resources
 
