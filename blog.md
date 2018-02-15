@@ -50,7 +50,7 @@ So, problems solved. We have a way to use domain names in unicode scripts that r
 
 Well, things aren’t always as they seem. And this is where homographs and homoglyphs come in.
 
-![Gif of Puppy Seeing Itself in the Mirror](https://imgur.com/tOr8uac.gif)
+![Gif of Puppy Seeing Itself in the Mirror](https://imgur.com/tOr8uac.gifv)
 
 Much like this puppy sees copy-pups of itself, a homograph refers to multiple things that look or seem the same, but have different meanings. We have many of these in English, for example “lead” could refer to the metallic substances or the past tense of “to lead.”
 
