@@ -1,16 +1,16 @@
 # Homographs, Attack!
 
-Homograph attacks have been a concept in security since the late 1990s so why do we find ourselves still talking about them today? In this post, I plan to explore the history of homograph attacks, and why, like many of the internet's path dependency problems, it seems like they just won't ever go away.
+We've known about Homograph attacks since the 1990s -- so you may be wondering why I'm writing about them in 2018. Don't worry, I'll get to that. In this post, we'll explore the history of homograph attacks, and why, like many of the internet’s problems that stem from path dependence, it seems like they just won’t ever go away.
 
 ## Origins of my Interest
 
 I first got interested in homograph attacks a few months back when I was working through tickets for Kickstarter's [Hackerone](https://hackerone.com) program. HackerOne is a "bug bounty program", or, an invitation that hackers and security researchers find vulnerabilities in our site in exchange for money.
 
-When I was looking through the tickets, one caught my attention. It wasn't a particularly high risk vulnerability, but I didn't understand a lot of words in the ticket, so of course I was interested. The hacker was concerned about Kickstarter's profile pages. We often get reports about our profile and project pages.
+When I was looking through the tickets, one caught my attention. It wasn't a particularly high risk vulnerability, but I didn't understand a lot of words in the ticket, so of course I was interested. The hacker was concerned about Kickstarter's profile pages. (We often get reports about our profile and project pages.)
 
 ![Example of Kickstarter's Profile Page](https://imgur.com/Yr3KizX.png)
 
-The issue is that whenever you are in the position to "host" someone on your site, you are going to have to think about the ways they'll abuse that legitimacy you give them. Our hacker was specifically concerned about a field that allows our users to add user-urls or "websites" to their profile. 
+Profile pages often create vulnerabilities for websites. Whenever you are in the position to “host” someone on your site, you are going to have to think about the ways they’ll abuse that legitimacy you give them. Our hacker was specifically concerned about a field that allows our users to add user-urls or "websites" to their profile.
 
 ![Example of Kickstarter's Profile Page Websites](https://imgur.com/6EpiaXz.png)
 
@@ -18,7 +18,7 @@ They thought this section could be used in a homograph attack. To which I was li
 
 ## Internet Corporation for Names and Numbers (ICANN)
 
-We have to start with ICANN, the main international internet body in charge in this story. Along with performing the technical maintenance of the DNS root zone registries and maintain the namespaces of the Internet, ICANN makes all the rules about what can and cannot be a domain name.
+We have to start with ICANN, the main international internet body in charge in this story. ICANN makes all the rules about what can and cannot be a domain name (along with performing the technical maintenance of the DNS root zone registries and maintaining the namespaces of the Internet).
 
 For example, say you go to Namecheap to register "loganisthemostawesome.com". Namecheap uses the [“extensible provisioning protocol”](https://en.wikipedia.org/wiki/Extensible_Provisioning_Protocol) to verify your name with Verisign. Verisign is the organization that manages the registry for the “.com” gTLD. Versign checks the ICANN rules and regulations for your registration attempt, tells Namecheap the result, and Namecheap tells me if I can register "loganisthemostawesome.com". Spoilers: I can!
 
@@ -26,7 +26,7 @@ This is great. But I primarily speak English and I use ASCII for all my awesome 
 
 ### Version 1 of Internationalized Domain Names
 
-That’s the question ICANN was asking themselves when they [proposed and implemented IDNs](https://www.icann.org/resources/pages/idn-guidelines-2003-06-20-en) as a standard protocol for domain names in the late 90s. They wanted a more global internet so they opened up domains to a variety of unicode represented scripts.
+ICANN attempted to answer this question when they [proposed and implemented IDNs](https://www.icann.org/resources/pages/idn-guidelines-2003-06-20-en) as a standard protocol for domain names in the late 90s. They wanted a more global internet so they opened up domains to a variety of unicode represented scripts.
 
 What's a script? A script is a collection of letters/signs for a single system. For example, Latin is a script that supports many languages, whereas a script like Kanji is one of the scripts supporting the Japanese language. Scripts can support many languages, and languages can be made of multiple scripts. ICANN keeps tables of all unicode character it associates with any given script.
 
@@ -99,9 +99,9 @@ Well, when I was talking to my friend [@frewsxcv](https://github.com/frewsxcv) a
 
 A lot of the URLs are a little off looking with the Cyrillic (also a lot of the top 1 million websites are porn), but we found some interesting ones you could register.
 
-For example, here's my personal favorite. In both Firefox and Chrome, visit:
+For example, here's my personal favorite. In both *Firefox* and *Chrome*, visit:
 
-> https://раураӏ.com/
+> [https://раураӏ.com/](https://раураӏ.com/)
 
 Here's what they look like in those Browsers.
 
