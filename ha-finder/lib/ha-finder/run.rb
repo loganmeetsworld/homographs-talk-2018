@@ -9,6 +9,7 @@ module HaFinder
     def initialize
       @latin_confusables_map = Hash[
         'a' => 'а',
+        'b' => 'Ь',
         'c' => 'с',
         'd' => 'ԁ',
         'e' => 'е',
